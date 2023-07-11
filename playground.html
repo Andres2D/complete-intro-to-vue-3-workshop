@@ -20,8 +20,9 @@
       <h1>Counter</h1>
       <p>{{ count }}</p>
       <button 
-        v-on:click="incrementCount(10, $event)" 
+        @click="incrementCount(10, $event)" 
         >Increment Count</button>
+        <!-- v-on:click="incrementCount(10, $event)"  -->
         <!-- v-on:click="(event) => incrementCount(10, event)"  -->
         <!-- v-on:click="incrementCount(10)"  -->
 
