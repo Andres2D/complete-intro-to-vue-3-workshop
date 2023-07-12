@@ -17,7 +17,7 @@
 
       <hr />
       
-      <h1>Counter</h1>
+      <h1>{{ counterTitle }}</h1>
       <p>{{ count }}</p>
       <button 
         @click="incrementCount(10, $event)" 
@@ -44,6 +44,7 @@
         data() {
           return {
             count: 0,
+            counterTitle: 'Counter Standard',
             incrementAmount: 7,
             message: 'Hello it works',
             listOfNumbers: [1,2,3,4,5]
@@ -51,14 +52,21 @@
         },
         methods: {
           incrementCount(newAmount, event) {
-            console.log(newAmount);
-            console.log(event);
+            // console.log(newAmount);
+            // console.log(event);
             this.count += this.incrementAmount;
           },
           // changeIncrementAmount(event) {
           //   console.log(event);
           //   this.incrementAmount = +event.target.value;
           // }
+        },
+        watch: {
+          count(newValue) {
+            if(newValue > 20) {
+              this.counterTitle += ' Very long';
+            }
+          }
         }
       });
       app.mount('#app');
