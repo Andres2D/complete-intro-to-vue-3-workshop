@@ -17,8 +17,9 @@
 
       <hr />
       
-      <h1>{{ counterTitle }}</h1>
+      <h1>{{ displayTitle }}</h1>
       <p>{{ count }}</p>
+      <p>{{ optimizedIncrementAmount }}</p>
       <button 
         @click="incrementCount(10, $event)" 
         >Increment Count</button>
@@ -50,11 +51,23 @@
             listOfNumbers: [1,2,3,4,5]
           }
         },
+        computed: {
+          displayTitle() {
+            if(this.count > 21) {
+              return 'Counter Standard - Very Long';
+            } else {
+              return 'Counter Standard';
+            }
+          },
+          optimizedIncrementAmount() {
+            return this.displayTitle.length * this.incrementAmount;
+          }
+        },
         methods: {
           incrementCount(newAmount, event) {
             // console.log(newAmount);
             // console.log(event);
-            this.count += this.incrementAmount;
+            this.count += this.optimizedIncrementAmount;
           },
           // changeIncrementAmount(event) {
           //   console.log(event);
